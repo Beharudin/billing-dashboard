@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    /* Brand Colors */
+    --primary: 193 100% 47%; /* #00aeef - Cyan */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 25 85% 55%; /* #ee7b28 - Orange */
+    --secondary-foreground: 0 0% 98%;
+
+    /* Semantic Colors */
+    --success: 142 76% 36%; /* #16a34a - Proper Green */
+    --success-foreground: 0 0% 98%;
+    --warning: 42 90% 78%; /* #fdd198 - Warning */
+    --warning-foreground: 0 0% 9%;
+    --danger: 0 84.2% 60.2%; /* red - Danger */
+    --danger-foreground: 0 0% 98%;
+
+    /* UI Colors */
+    --muted: 0 0% 93%; /* #ededed - Gray */
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 210 40% 96.1%; /* Light grayish-blue */
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%; /* Red */
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 193 100% 47%; /* Cyan ring */
+    --radius: 0.5rem;
+    scroll-behavior: smooth;
+
+    /* Chart Colors */
+    --chart-1: 193 100% 47%; /* Cyan */
+    --chart-2: 25 85% 55%; /* Orange */
+    --chart-3: 93 61% 64%; /* Green */
+    --chart-4: 42 90% 78%; /* Warning */
+    --chart-5: 0 84% 60%; /* Red */
+  }
+
+  .dark {
+    --background: 215 25% 17%;
+    --foreground: 0 0% 98%;
+    --card: 215 25% 17%;
+    --card-foreground: 0 0% 98%;
+    --popover: 215 25% 17%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Brand Colors - Dark Mode */
+    --primary: 193 100% 47%; /* #00aeef - Cyan (same in dark) */
+    --primary-foreground: 0 0% 9%;
+    --secondary: 25 85% 55%; /* #ee7b28 - Orange (same in dark) */
+    --secondary-foreground: 0 0% 9%;
+
+    /* Semantic Colors - Dark Mode */
+    --success: 142 76% 36%; /* #16a34a - Proper Green */
+    --success-foreground: 0 0% 98%;
+    --warning: 42 90% 78%; /* #fdd198 - Warning */
+    --warning-foreground: 0 0% 9%;
+    --danger: 0 62.8% 30.6%; /* Darker red for dark mode */
+    --danger-foreground: 0 0% 98%;
+
+    /* UI Colors - Dark Mode */
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 210 40% 20%; /* Darker grayish-blue for dark mode */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 193 100% 47%; /* Cyan ring */
+    
+    /* Form element colors for dark mode */
+    --input-foreground: 0 0% 98%; /* White text for inputs */
+    --textarea-foreground: 0 0% 98%; /* White text for textareas */
+
+    /* Chart Colors - Dark Mode */
+    --chart-1: 193 100% 47%; /* Cyan */
+    --chart-2: 25 85% 55%; /* Orange */
+    --chart-3: 93 61% 64%; /* Green */
+    --chart-4: 42 90% 78%; /* Warning */
+    --chart-5: 0 62% 30%; /* Dark Red */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.hideIncrementor input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hideIncrementor input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  /* Firefox */
+}
+
+/* Hide scrollbar for WebKit browsers */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+::-webkit-scrollbar {
+  width: 5px; /* Width of vertical scrollbar */
+}
+
+/* Sidebar specific styles */
+.sidebar-item-active {
+  position: relative;
+}
+
+.sidebar-item-active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(to bottom, #ffffff, #ffffff80);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 4px;
+    opacity: 1;
+  }
+}
+
+/* Smooth transitions for sidebar */
+.sidebar-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effects */
+.sidebar-item-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus ring improvements */
+.sidebar-focus:focus {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+/* Remove all focus outlines and borders from sidebar elements */
+.sidebar-item-hover:focus,
+.sidebar-item-hover:focus-visible,
+.sidebar-item-hover:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  ring: 0 !important;
+}

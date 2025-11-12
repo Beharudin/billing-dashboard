@@ -1,0 +1,40 @@
+name: Deploy Supply Chain App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Create .env file
+        run: |
+          echo "VITE_TIN_BACKEND_URL=${{ secrets.VITE_TIN_BACKEND_URL }}" >> .env
+          echo "VITE_DEV_BACKEND_URL=${{ secrets.VITE_DEV_BACKEND_URL }}" >> .env
+          echo "VITE_PRO_BACKEND_URL=${{ secrets.VITE_PRO_BACKEND_URL }}" >> .env
+          echo "VITE_DEV_BACKEND_URL1=${{ secrets.VITE_DEV_BACKEND_URL1 }}" >> .env
+          echo "VITE_PRO_BACKEND_URL1=${{ secrets.VITE_PRO_BACKEND_URL1 }}" >> .env
+          echo "VITE_DEV_BACKEND_URL2=${{ secrets.VITE_DEV_BACKEND_URL2 }}" >> .env
+          echo "VITE_PRO_BACKEND_URL2=${{ secrets.VITE_PRO_BACKEND_URL2 }}" >> .env
+
+      - name: Install dependencies
+        run: npm install --frozen-lockfile
+
+      - name: Build the application
+        run: npm run build
+
+      - name: Deploy build folder to Nginx path
+        run: |
+          rm -rf /var/www/supply-chain/*
+          cp -r ./dist/* /var/www/supply-chain/
+          sudo systemctl restart nginx

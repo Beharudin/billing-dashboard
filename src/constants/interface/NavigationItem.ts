@@ -7,4 +7,5 @@ export interface NavigationItem {
   icon?: ReactElement; // The React element for the icon
   subMenu?: NavigationItem[];
   roles?: string[]; // optional -> visible only for these roles
+  plans?: string[]; // optional -> visible only for users with these plans (subscriptions)
 }

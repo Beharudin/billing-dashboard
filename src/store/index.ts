@@ -13,11 +13,13 @@ import {
 
 import auth from "./auth/auth-slice";
 import notification from "./notification/notification-slice";
+import billing from "./billing/billing-slice";
 
 // Combine reducers
 const rootReducer = combineReducers({
   auth,
   notification,
+  billing,
 });
 
 // Persist configuration
@@ -25,7 +27,7 @@ const persistConfig = {
   key: "root",
   storage,
   whitelist: ["auth"], // Only persist auth slice
-  blacklist: ["notification"], // Don't persist notifications
+  blacklist: ["notification", "billing"], // Don't persist notifications or billing
 };
 
 // Create persisted reducer

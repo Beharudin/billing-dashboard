@@ -24,29 +24,36 @@ const Sidebar = ({
   const { pathname } = location;
 
   const { user } = useAppSelector((state) => state.auth);
-  const allowedMenu = menuItems;
-  // const allowedMenu = menuItems
-  //   .filter((item) => !item.roles || item.roles.includes(user?.userType ?? ""))
-  //   .map((item) => {
-  //     // Filter submenu items based on user role
-  //     if (item.subMenu) {
-  //       return {
-  //         ...item,
-  //         subMenu: item.subMenu.filter(
-  //           (subItem) =>
-  //             !subItem.roles || subItem.roles.includes(user?.userType ?? "")
-  //         ),
-  //       };
-  //     }
-  //     return item;
-  //   })
-  //   .filter((item) => {
-  //     // Remove parent menu items that have no accessible submenu items
-  //     if (item.subMenu && item.subMenu.length === 0) {
-  //       return false;
-  //     }
-  //     return true;
-  //   });
+  const { subscription } = useAppSelector((state) => state.billing);
+
+  const userType = user?.userType ?? "";
+  const planKey = subscription?.planKey ?? null;
+  
+  const allowedMenu = menuItems
+    .filter((item) => {
+      const roleOk = !item.roles || item.roles.includes(userType);
+      const planOk = !item.plans || (planKey ? item.plans.includes(planKey) : false);
+      return roleOk && planOk;
+    })
+    .map((item) => {
+      if (item.subMenu) {
+        return {
+          ...item,
+          subMenu: item.subMenu.filter((subItem) => {
+            const roleOk = !subItem.roles || subItem.roles.includes(userType);
+            const planOk = !subItem.plans || (planKey ? subItem.plans.includes(planKey) : false);
+            return roleOk && planOk;
+          }),
+        };
+      }
+      return item;
+    })
+    .filter((item) => {
+      if (item.subMenu && item.subMenu.length === 0) {
+        return false;
+      }
+      return true;
+    });
 
   const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);

@@ -114,6 +114,11 @@ export const mockUsers = [
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
+    subscription: {
+      planKey: "pro_monthly",
+      start: new Date().toISOString(),
+      end: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+    },
   },
   {
     id: 2,
@@ -130,6 +135,11 @@ export const mockUsers = [
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
+    subscription: {
+      planKey: "basic_monthly",
+      start: new Date().toISOString(),
+      end: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+    },
   },
   {
     id: 4,
@@ -146,6 +156,11 @@ export const mockUsers = [
     isActive: false,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
+    subscription: {
+      planKey: "pro_yearly",
+      start: new Date().toISOString(),
+      end: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+    },
   },
   {
     id: 5,
@@ -157,6 +172,11 @@ export const mockUsers = [
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
+    subscription: {
+      planKey: "pro_yearly",
+      start: new Date().toISOString(),
+      end: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+    },
   },
   {
     id: 6,
@@ -173,6 +193,11 @@ export const mockUsers = [
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
+    subscription: {
+      planKey: "basic_yearly",
+      start: new Date().toISOString(),
+      end: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString(),
+    },
   },
   {
     id: 7,
@@ -189,6 +214,11 @@ export const mockUsers = [
     isActive: true,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
+    subscription: {
+      planKey: "basic_monthly",
+      start: new Date().toISOString(),
+      end: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+    },
   },
 ];
 

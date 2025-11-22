@@ -37,6 +37,7 @@ export interface OrganizationReference {
 export interface AdminUser extends BaseUser {
   userType: AdminModuleType;
   assignedOrganization?: OrganizationReference;
+  subscription?: Subscription;
 }
 
 export interface AdminModuleOption {
@@ -72,3 +73,17 @@ export const ADMIN_MODULE_OPTIONS: AdminModuleOption[] = [
     requiresOrganization: true,
   },
 ];
+
+
+export interface Subscription {
+  planKey: string;
+  start: string;
+  end: string;
+}
+
+export interface Plan {
+  key: string;
+  name: string;
+  interval: 'month' | 'year';
+  price: number;
+}

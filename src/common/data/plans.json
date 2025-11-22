@@ -1,0 +1,6 @@
+[
+  { "key": "basic_monthly", "name": "Basic Monthly", "interval": "month", "price": 10 },
+  { "key": "pro_monthly", "name": "Pro Monthly", "interval": "month", "price": 25 },
+  { "key": "basic_yearly", "name": "Basic Yearly", "interval": "year", "price": 100 },
+  { "key": "pro_yearly", "name": "Pro Yearly", "interval": "year", "price": 250 }
+]

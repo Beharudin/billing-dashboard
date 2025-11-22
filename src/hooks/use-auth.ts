@@ -32,6 +32,7 @@ export const useAuth = () => {
         navigate("/admin");
         toast.success("Login successful");
       }
+      navigate("/admin");
     },
     onError: (error: AxiosError<any>) => {
       const errorMessage = error.response?.data?.message;

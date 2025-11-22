@@ -17,8 +17,8 @@ import {
 import { Input } from "../../common/ui/input";
 import { Loader } from "../../common/ui/loader";
 import { LoginFormValues, loginSchema } from "../../schema/auth";
-import { useAppDispatch, useAppSelector } from "../../store";
-import { logout } from "../../store/auth/auth-slice";
+// import { useAppDispatch, useAppSelector } from "../../store";
+// import { logout } from "../../store/auth/auth-slice";
 
 type LoginFormProps = {
   onSubmit: UseMutateFunction<
@@ -30,36 +30,36 @@ type LoginFormProps = {
   loading: boolean;
 };
 
-const isTokenExpired = (token: string): boolean => {
-  try {
-    const payload = JSON.parse(atob(token.split(".")[1]));
-    const currentTime = Date.now() / 1000;
-    return payload.exp < currentTime;
-  } catch (error) {
-    return true;
-  }
-};
+// const isTokenExpired = (token: string): boolean => {
+//   try {
+//     const payload = JSON.parse(atob(token.split(".")[1]));
+//     const currentTime = Date.now() / 1000;
+//     return payload.exp < currentTime;
+//   } catch (error) {
+//     return true;
+//   }
+// };
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, loading }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const location = useLocation();
+  // const navigate = useNavigate();
+  // const dispatch = useAppDispatch();
+  // const location = useLocation();
 
-  const { isAuthenticated, accessToken, user } = useAppSelector(
-    (state) => state.auth
-  );
-  const redirectPath = location.state?.path ?? "/admin";
+  // const { isAuthenticated, accessToken, user } = useAppSelector(
+  //   (state) => state.auth
+  // );
+  // const redirectPath = location.state?.path ?? "/admin";
 
-  useEffect(() => {
-    if (isAuthenticated && accessToken && user) {
-      if (!isTokenExpired(accessToken)) {
-        navigate(redirectPath, { replace: true });
-      } else {
-        dispatch(logout());
-      }
-    }
-  }, [isAuthenticated, accessToken, user, navigate, redirectPath]);
+  // useEffect(() => {
+  //   if (isAuthenticated && accessToken && user) {
+  //     if (!isTokenExpired(accessToken)) {
+  //       navigate(redirectPath, { replace: true });
+  //     } else {
+  //       dispatch(logout());
+  //     }
+  //   }
+  // }, [isAuthenticated, accessToken, user, navigate, redirectPath]);
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),

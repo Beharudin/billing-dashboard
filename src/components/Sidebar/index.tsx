@@ -24,29 +24,29 @@ const Sidebar = ({
   const { pathname } = location;
 
   const { user } = useAppSelector((state) => state.auth);
-
-  const allowedMenu = menuItems
-    .filter((item) => !item.roles || item.roles.includes(user?.userType ?? ""))
-    .map((item) => {
-      // Filter submenu items based on user role
-      if (item.subMenu) {
-        return {
-          ...item,
-          subMenu: item.subMenu.filter(
-            (subItem) =>
-              !subItem.roles || subItem.roles.includes(user?.userType ?? "")
-          ),
-        };
-      }
-      return item;
-    })
-    .filter((item) => {
-      // Remove parent menu items that have no accessible submenu items
-      if (item.subMenu && item.subMenu.length === 0) {
-        return false;
-      }
-      return true;
-    });
+  const allowedMenu = menuItems;
+  // const allowedMenu = menuItems
+  //   .filter((item) => !item.roles || item.roles.includes(user?.userType ?? ""))
+  //   .map((item) => {
+  //     // Filter submenu items based on user role
+  //     if (item.subMenu) {
+  //       return {
+  //         ...item,
+  //         subMenu: item.subMenu.filter(
+  //           (subItem) =>
+  //             !subItem.roles || subItem.roles.includes(user?.userType ?? "")
+  //         ),
+  //       };
+  //     }
+  //     return item;
+  //   })
+  //   .filter((item) => {
+  //     // Remove parent menu items that have no accessible submenu items
+  //     if (item.subMenu && item.subMenu.length === 0) {
+  //       return false;
+  //     }
+  //     return true;
+  //   });
 
   const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);

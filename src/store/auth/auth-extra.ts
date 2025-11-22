@@ -36,33 +36,49 @@ export const authenticate = createAsyncThunk(
   "auth/login",
   async (credentials: Login, { dispatch }) => {
     try {
-      const { status, data } = await API.post(
-        `${baseUrl}/auth/login`,
-        credentials
-      );
+      // const { status, data } = await API.post(
+      //   `${baseUrl}/auth/login`,
+      //   credentials
+      // );
 
-      if (status === HTTP_RESPONSE.SUCCESS && data.success) {
-        // Update current user
-        dispatch(
-          updateUser({
-            username: data.data.username,
-            userType: data.data.role,
-          })
-        );
+      // if (status === HTTP_RESPONSE.SUCCESS && data.success) {
+      //   // Update current user
+      //   dispatch(
+      //     updateUser({
+      //       username: data.data.username,
+      //       userType: data.data.role,
+      //     })
+      //   );
 
-        // Update tokens (redux-persist will handle storage)
-        dispatch(
-          updateTokens({
-            accessToken: data.data.accessToken,
-            refreshToken: data.data.refreshToken,
-          })
-        );
-
-        return data;
-      } else {
-        const errorMessage = data.message || "Login Request Failed!";
-        throw new Error(errorMessage);
+      //   // Update tokens (redux-persist will handle storage)
+      //   dispatch(
+      //     updateTokens({
+      //       accessToken: data.data.accessToken,
+      //       refreshToken: data.data.refreshToken,
+      //     })
+      //   );
+      
+      const data={
+        username: "Beharudin",
+        role: "ADMIN",
       }
+      dispatch(
+          updateUser({
+            username: data.username,
+            userType: data.role,
+          })
+        );
+           dispatch(
+          updateTokens({
+            accessToken: "token",
+            refreshToken: "token",
+          })
+        );
+        return data;
+      // } else {
+      //   const errorMessage = data.message || "Login Request Failed!";
+      //   throw new Error(errorMessage);
+      // }
     } catch (error: any) {
       console.log(error);
       throw error;

@@ -15,7 +15,8 @@ export const appRoutes = [
   {
     path: "/admin/*",
     element: <Admin />,
-    roles: [ROLES.ADMIN, ROLES.PARTNER_SUB_ADMIN],
+    // roles: [ROLES.ADMIN, ROLES.PARTNER_SUB_ADMIN],
+    roles: null,
   },
   {
     path: "/login",

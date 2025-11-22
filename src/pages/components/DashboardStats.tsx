@@ -52,7 +52,7 @@ export const DashboardStats = () => {
 
   return (
     <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
-      {(statsData as StatCardProps[]).map(
+      {(statsData as StatCardProps[])?.map(
         (stat: StatCardProps, index: number) => (
           <StatCard key={stat.entityType} index={index} {...stat} />
         )
